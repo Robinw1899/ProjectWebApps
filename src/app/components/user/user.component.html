@@ -1,0 +1,58 @@
+<h1>{{username}}</h1>
+<ul class="ui list">
+  <li class="item">Name: {{name}}</li>
+  <li class="item">Age: {{age}}</li>
+  <li class="item">Email: {{email}}</li>
+  <li class="item">Description:
+    <textarea>{{description}}</textarea>
+  </li>
+</ul>
+
+
+<button class="ui primary button" (click)="onEdit()">Edit user</button>
+
+<div *ngIf='isEdit'>
+
+
+  <h1>Eddit user</h1>
+  <form [formGroup]='userEditForm' (ngSubmit)='onSubmit()'>
+    <div class="ui form">
+      <div class="field">
+        <label for="firstName">First name:</label>
+        <input type="text" name="firstName" formControlName='firstName'>
+      </div>
+    </div>
+    <div class="ui form">
+      <div class="field">
+        <label for="lastName">Last name:</label>
+        <input type="text" name="lastName" formControlName='lastName'>
+      </div>
+    </div>
+    <div class="ui form">
+      <div class="field">
+        <label for="birthdate">Birthdate:</label>
+        <input class="ui input" type="date" name="birthDate" formControlName='birthDate'>
+      </div>
+    </div>
+    <div class="ui form">
+      <div class="field">
+        <label for="email">email:</label>
+        <input class="ui input" type="text" name="email" formControlName='email'>
+      </div>
+    </div>
+    <div class="ui form">
+      <div class="field">
+        <label for="description">Over mij:</label>
+        <input class="ui input" type="textarea" name="description" formControlName='description'>
+      </div>
+    </div>
+    <Button type="submit" class="ui positive button">Submit</Button>
+  </form>
+</div>
+
+
+<h1>Posts</h1>
+<!--<div *ngFor="let post of posts">
+  <h4>{{post.title}}</h4>
+  <p>{{post.body}}</p>
+</div>-->

@@ -1,0 +1,9 @@
+<form  #f='ngForm' (ngSubmit)="addTweet()" class="ui reply form">
+  <h1>Add tweet</h1>
+  <div class="field">
+    <textarea placeholder="What's on your mind?" id='message' [(ngModel)]='_tweet._message' name="message" ngModel></textarea>
+  </div>
+  <button type="submit" class="ui blue labeled submit icon button">
+    <i class="icon edit"></i> Tweet
+  </button>
+</form>

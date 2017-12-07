@@ -1,0 +1,7 @@
+<div>
+    <app-add-tweet (tweetAdded)="addTweet($event)"></app-add-tweet>
+</div>
+<div>
+    <app-tweet *ngFor="let tweet of _tweets " [tweet] ="tweet"  ></app-tweet>  
+</div>
+  

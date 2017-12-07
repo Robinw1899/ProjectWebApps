@@ -1,0 +1,52 @@
+<form [formGroup]='registerForm' (ngSubmit)='onSubmit()' class="ui form">
+  <div class="field">
+    <label>First Name</label>
+    <input type="text" name="first-name" placeholder="First Name" formControlName='firstName'>
+  </div>
+  <div class="field">
+    <label>Last Name</label>
+    <input type="text" name="last-name" placeholder="Last Name" formControlName='lastName'>
+  </div>
+  <div class="ui form">
+    <div class="field">
+      <label>Username</label>
+      <input type="text" placeholder="Username" formControlName="username">
+      <div class='ui pointing red basic label' 
+      *ngIf='registerForm.get("username").errors?.userAlreadyExists 
+        && registerForm.get("username").touched'>
+        a user with that name already exists
+    </div>
+    </div>
+  </div>
+  <div formGroupName='passwordGroup'>
+  <div class="ui form">
+    <div class="field">
+      <label for="password">password:</label>
+      <input type="password" id="password" formControlName='password'>
+      <div class='ui pointing red basic label' *ngIf=' passwordControl.errors?.passwordTooShort && passwordControl.touched'>
+        password too short, please use at least {{passwordControl.errors?.passwordTooShort.requiredLength}} letters (got {{passwordControl.errors?.passwordTooShort.actualLength}})
+      </div>
+    </div>
+    <div class="field">
+      <label for="confirmpassword">confirm password:</label>
+      <input type="password" id="confirmpassword" placeholder="confirm password" formControlName='confirmPassword'>
+    </div>
+    <div class='ui pointing red basic label' *ngIf=' registerForm.get("passwordGroup").errors?.passwordsDiffer && registerForm.get("passwordGroup").get("confirmPassword").touched  && registerForm.get("passwordGroup").get("password").touched'>
+     the two passwords should be the same
+    </div>
+  </div>
+</div>
+  <div class="ui form">
+    <div class="field">
+      <label>email</label>
+      <input type="text" placeholder="example@test.com" formControlName="email">
+    </div>
+  </div>
+  <div class="ui form">
+    <div class="field">
+      <label>birthdate</label>
+      <input type="date" formControlName="birthdate">
+    </div>
+  </div>
+  <button class="ui button" type="submit">Register</button>
+</form>

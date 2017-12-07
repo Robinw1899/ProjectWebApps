@@ -1,0 +1,16 @@
+<!--<form [formGroup]="commentForm" (ngSubmit)="addComment()">
+    <div class="ui large transparent left icon input">
+        <i class="heart outline icon"></i>
+        <input type="text" placeholder="Add Comment..." formControlName="message" >
+        <button type='submit'>Add</button>
+    </div>
+</form>-->
+
+<form #f='ngForm' (ngSubmit)="addComment()">
+    <div class="ui large transparent left icon input">
+        <i class="heart outline icon"></i>
+        <input type="text" placeholder="Add Comment..." id='message' [(ngModel)]='_comment.message' name="message" ngModel >
+        <button type='submit'>Add</button>
+      </div>
+</form>
+

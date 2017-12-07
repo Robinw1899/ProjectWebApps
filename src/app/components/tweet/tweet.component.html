@@ -1,0 +1,31 @@
+<div class="ui section divider"></div>
+<div class="ui one column grid">
+  <div class="ui card one column grid">
+    <div class="content">
+      <div class="right floated meta">1 minute ago</div>
+      {{tweet?._username}}
+    </div>
+    <div>
+      <p>
+        {{tweet?._message}}
+      </p>
+    </div>
+    <div class="content">
+      <span class="right floated">
+        <i class="heart outline like icon"></i>
+        {{tweet?._likes}}
+      </span>
+      <i class="comment icon"></i>
+      {{amountOfComments}} comments
+    </div>
+    <div class="ui comments">
+      <h3 class="ui dividing header">Comments</h3>
+      <div *ngFor="let comment of tweet.comments">
+        <app-comment [comment]="comment"></app-comment>
+      </div>
+    </div>
+    <div class="extra content">
+      <app-add-comment (commentAdded)="addComment($event)" [tweet]='tweet'></app-add-comment>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('project-wep-app App', () => {
+describe('twitter App', () => {
   let page: AppPage;
 
   beforeEach(() => {
