@@ -10,11 +10,11 @@ let passport = require('passport');
 var dotenv = require('dotenv');
 
 //load variables from .env
-/*const result = dotenv.config();
+const result = dotenv.config();
 
 if (result.error) {
   throw result.error
-};*/
+};
 
 require('./backend/models/Comment');
 require('./backend/models/Tweet');
