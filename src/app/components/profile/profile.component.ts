@@ -15,10 +15,10 @@ export class ProfileComponent implements OnInit {
   email: String;
   description: string;
 
-  constructor(private data:DataService,private _service:TweetListDataService) { }
+  constructor(private data: DataService, private _service: TweetListDataService) { }
 
   ngOnInit() {
-    this._service.getUser(this.data.selectedUser).subscribe(item =>{
+    this._service.getUser(this.data.selectedUser).subscribe(item => {
       this.username = item.username;
       this.name = item.firstName + " " + item.lastName;
       this.age = this.getAge(item.birthdate);

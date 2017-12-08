@@ -56,17 +56,7 @@ export class Tweet {
     date:Date,
     id:Number */
     static fromJSON(json):Tweet{
-        console.log("tweet from JSON")
-        console.log(json);
-        console.log(json.message);
-        console.log(json.username);
-        console.log(json.date);
-        console.log(json.comments);
-        console.log(json.likes);
-        console.log(json._id);
         const tw = new Tweet(json.message,json.username,json.date,json.comments,json.likes,json._id);
-        console.log(tw);
-        console.log("tweet end from JSON")
         return tw;
     }
 

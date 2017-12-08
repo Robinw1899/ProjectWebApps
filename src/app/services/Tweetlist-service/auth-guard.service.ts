@@ -9,9 +9,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, 
         state: RouterStateSnapshot): boolean {
-    console.log(this.authService);
-    console.log(this.authService.user$);
-    console.log(this.authService.user$.getValue());
+   
     if (this.authService.user$.getValue()) {
       return true;
     }

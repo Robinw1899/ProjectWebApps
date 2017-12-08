@@ -12,19 +12,19 @@ import { AuthenticationService } from '../../services/Tweetlist-service/authenti
 })
 export class AddTweetComponent implements OnInit {
   @Output() public tweetAdded = new EventEmitter<Tweet>();
-  _tweet:Tweet;
+  _tweet: Tweet;
 
-  constructor(private fb:FormBuilder,private _service:TweetListDataService,private auth:AuthenticationService) { }
+  constructor(private fb: FormBuilder, private _service: TweetListDataService, private auth: AuthenticationService) { }
 
   ngOnInit() {
-   this._tweet = new Tweet('',this.auth.user$.getValue(),new Date());
+    this._tweet = new Tweet('', this.auth.user$.getValue(), new Date());
   }
 
-  addTweet(){
+  addTweet() {
     this._tweet.date = new Date();
     this._service.addTweet(this._tweet).subscribe();
     this.tweetAdded.emit(this._tweet);
-    this._tweet = new Tweet('',this.auth.user$.getValue(),new Date());
+    this._tweet = new Tweet('', this.auth.user$.getValue(), new Date());
   }
 
 }

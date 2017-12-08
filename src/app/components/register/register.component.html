@@ -1,45 +1,65 @@
 <form [formGroup]='registerForm' (ngSubmit)='onSubmit()' class="ui form">
   <div class="field">
     <label>First Name</label>
-    <input type="text" name="first-name" placeholder="First Name" formControlName='firstName'>
+    <input type="text" id="firstName" name="first-name" placeholder="First Name" formControlName='firstName'>
+    <div class='ui pointing red basic label' *ngIf='registerForm.get("firstName").errors?.minlength && registerForm.get("firstName").touched'>
+      First name should be at least {{registerForm.get("firstName").errors?.minlength.requiredLength }} letters long
+    </div>
+    <div class='ui pointing red basic label' *ngIf=' registerForm.get("firstName").errors?.required && registerForm.get("firstName").touched'>
+      First name is required
+    </div>
   </div>
   <div class="field">
     <label>Last Name</label>
-    <input type="text" name="last-name" placeholder="Last Name" formControlName='lastName'>
+    <input type="text" id="lastName" name="last-name" placeholder="Last Name" formControlName='lastName'>
+    <div class='ui pointing red basic label' *ngIf='registerForm.get("lastName").errors?.minlength && registerForm.get("lastName").touched'>
+      The last name should be at least {{registerForm.get("firstName").errors?.minlength.requiredLength }} letters long
+    </div>
+    <div class='ui pointing red basic label' *ngIf=' registerForm.get("lastName").errors?.required && registerForm.get("lastName").touched'>
+      Last name is required
+    </div>
   </div>
   <div class="ui form">
     <div class="field">
       <label>Username</label>
-      <input type="text" placeholder="Username" formControlName="username">
-      <div class='ui pointing red basic label' 
-      *ngIf='registerForm.get("username").errors?.userAlreadyExists 
+      <input type="text" id="username" placeholder="Username" formControlName="username">
+      <div class='ui pointing red basic label' *ngIf='registerForm.get("username").errors?.userAlreadyExists 
         && registerForm.get("username").touched'>
         a user with that name already exists
-    </div>
+      </div>
+      <div class='ui pointing red basic label' *ngIf=' registerForm.get("username").errors?.required && registerForm.get("username").touched'>
+        username is required
+      </div>
     </div>
   </div>
   <div formGroupName='passwordGroup'>
-  <div class="ui form">
-    <div class="field">
-      <label for="password">password:</label>
-      <input type="password" id="password" formControlName='password'>
-      <div class='ui pointing red basic label' *ngIf=' passwordControl.errors?.passwordTooShort && passwordControl.touched'>
-        password too short, please use at least {{passwordControl.errors?.passwordTooShort.requiredLength}} letters (got {{passwordControl.errors?.passwordTooShort.actualLength}})
+    <div class="ui form">
+      <div class="field">
+        <label for="password">password:</label>
+        <input type="password" id="password" formControlName='password'>
+        <div class='ui pointing red basic label' *ngIf=' passwordControl.errors?.passwordTooShort && passwordControl.touched'>
+          password too short, please use at least {{passwordControl.errors?.passwordTooShort.requiredLength}} letters (got {{passwordControl.errors?.passwordTooShort.actualLength}})
+        </div>
+      </div>
+      <div class="field">
+        <label for="confirmpassword">confirm password:</label>
+        <input type="password" id="confirmpassword" placeholder="confirm password" formControlName='confirmPassword'>
+      </div>
+      <div class='ui pointing red basic label' *ngIf=' registerForm.get("passwordGroup").errors?.passwordsDiffer && registerForm.get("passwordGroup").get("confirmPassword").touched  && registerForm.get("passwordGroup").get("password").touched'>
+        the two passwords should be the same
       </div>
     </div>
-    <div class="field">
-      <label for="confirmpassword">confirm password:</label>
-      <input type="password" id="confirmpassword" placeholder="confirm password" formControlName='confirmPassword'>
-    </div>
-    <div class='ui pointing red basic label' *ngIf=' registerForm.get("passwordGroup").errors?.passwordsDiffer && registerForm.get("passwordGroup").get("confirmPassword").touched  && registerForm.get("passwordGroup").get("password").touched'>
-     the two passwords should be the same
-    </div>
   </div>
-</div>
   <div class="ui form">
     <div class="field">
       <label>email</label>
-      <input type="text" placeholder="example@test.com" formControlName="email">
+      <input type="email" id="email" placeholder="example@test.com" formControlName="email">
+      <div class='ui pointing red basic label' *ngIf='registerForm.get("email").errors?.email && registerForm.get("email").touched'>
+       this is not a valid email
+      </div>
+      <div class='ui pointing red basic label' *ngIf=' registerForm.get("email").errors?.required && registerForm.get("email").touched'>
+        Email is required
+      </div>
     </div>
   </div>
   <div class="ui form">
@@ -48,5 +68,5 @@
       <input type="date" formControlName="birthdate">
     </div>
   </div>
-  <button class="ui button" type="submit">Register</button>
+  <button class="ui positive button" ng-disabled="registerForm.$invalid" type="submit">Register</button>
 </form>

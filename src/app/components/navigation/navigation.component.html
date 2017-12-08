@@ -2,26 +2,23 @@
   <a class="ui item" href="#" routerLink="/">
     Home
   </a>
-  <a class="ui item">
-    Followers
-  </a>
   <a class="ui item" href="#" routerLink="/profile">
     Profile
   </a>
 
   <div class="right menu">
-      <div *ngIf='(currentUser | async) else loginknop' class="ui item">
-          <div class="ui item">
-              Hallo, {{currentUser|async}} 
-          </div>
-          <a class="ui item" href="#" (click)="onLogout()" routerLink="/login">
-              logout
-          </a>   
+    <div *ngIf='(currentUser | async) else loginknop' class="ui item">
+      <div class="ui item">
+        Hallo, {{currentUser|async}}
       </div>
-      <ng-template #loginknop>
-          <a class="ui item" href="#" routerLink="/login"  >
-            Login
-          </a>    
-      </ng-template>
+      <a class="ui item" href="#" (click)="onLogout()" routerLink="/login">
+        logout
+      </a>
+    </div>
+    <ng-template #loginknop>
+      <a class="ui item" href="#" routerLink="/login">
+        Login
+      </a>
+    </ng-template>
   </div>
 </div>

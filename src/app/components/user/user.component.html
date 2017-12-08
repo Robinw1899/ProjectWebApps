@@ -3,10 +3,11 @@
   <li class="item">Name: {{name}}</li>
   <li class="item">Age: {{age}}</li>
   <li class="item">Email: {{email}}</li>
-  <li class="item">Description:
-    <textarea>{{description}}</textarea>
-  </li>
 </ul>
+<label>About me:</label>
+<div class="field"> 
+  <textarea readonly class="description">{{description}}</textarea>
+</div>
 
 
 <button class="ui primary button" (click)="onEdit()">Edit user</button>
@@ -19,25 +20,38 @@
     <div class="ui form">
       <div class="field">
         <label for="firstName">First name:</label>
-        <input type="text" name="firstName" formControlName='firstName'>
+        <input type="text" id="firstName" name="firstName" formControlName='firstName'>
+        <div class='ui pointing red basic label' *ngIf='userEditForm.get("firstName").errors?.minlength && userEditForm.get("firstName").touched'>
+          First name should be at least {{userEditForm.get("firstName").errors?.minlength.requiredLength }} letters long
+        </div>
+        <div class='ui pointing red basic label' *ngIf=' userEditForm.get("firstName").errors?.required && userEditForm.get("firstName").touched'>
+          First name is required
+        </div>
       </div>
     </div>
     <div class="ui form">
       <div class="field">
         <label for="lastName">Last name:</label>
-        <input type="text" name="lastName" formControlName='lastName'>
-      </div>
-    </div>
-    <div class="ui form">
-      <div class="field">
-        <label for="birthdate">Birthdate:</label>
-        <input class="ui input" type="date" name="birthDate" formControlName='birthDate'>
+        <input type="text" id="lastName" name="lastName" formControlName='lastName'>
+        <div class='ui pointing red basic label' *ngIf='userEditForm.get("lastName").errors?.minlength && userEditForm.get("lastName").touched'>
+          The last name should be at least {{userEditForm.get("firstName").errors?.minlength.requiredLength }} letters long
+        </div>
+        <div class='ui pointing red basic label' *ngIf=' userEditForm.get("lastName").errors?.required && userEditForm.get("lastName").touched'>
+          Last name is required
+        </div>
       </div>
     </div>
     <div class="ui form">
       <div class="field">
         <label for="email">email:</label>
-        <input class="ui input" type="text" name="email" formControlName='email'>
+        <input class="ui input" id="email" type="text" name="email" formControlName='email'>
+        <input type="email" id="email" placeholder="example@test.com" formControlName="email">
+        <div class='ui pointing red basic label' *ngIf='userEditForm.get("email").errors?.email && userEditForm.get("email").touched'>
+         this is not a valid email
+        </div>
+        <div class='ui pointing red basic label' *ngIf=' userEditForm.get("email").errors?.required && userEditForm.get("email").touched'>
+          Email is required
+        </div>
       </div>
     </div>
     <div class="ui form">
@@ -46,13 +60,8 @@
         <input class="ui input" type="textarea" name="description" formControlName='description'>
       </div>
     </div>
-    <Button type="submit" class="ui positive button">Submit</Button>
+    <Button type="submit" ng-disabled="userEditForm.$invalid" class="ui positive button">Submit</Button>
   </form>
 </div>
 
 
-<h1>Posts</h1>
-<!--<div *ngFor="let post of posts">
-  <h4>{{post.title}}</h4>
-  <p>{{post.body}}</p>
-</div>-->

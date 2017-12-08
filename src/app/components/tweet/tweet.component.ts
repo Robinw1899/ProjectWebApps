@@ -1,7 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { TweetListDataService } from '../../services/Tweetlist-service/tweet-list.service'
 import { Tweet } from '../../models/Tweet';
-import { Comment } from '../../models/Comment'
+import { Comment } from '../../models/Comment';
 @Component({
   selector: 'app-tweet',
   templateUrl: './tweet.component.html',
@@ -17,7 +17,6 @@ export class TweetComponent implements OnInit {
 
   ngOnInit() {
     this.comments = this.tweet._comments;
-    console.log(this.comments);
     this.checkAmountComments();
   }
   addComment(comment:Comment){

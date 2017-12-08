@@ -1,31 +1,31 @@
 <div class="ui middle aligned center aligned grid">
-    <div class="column">
-      <h2 class="ui teal image header">
-        <div class="content">
-          Log-in to your account
-        </div>
-      </h2>
-      <form [formGroup]='loginForm' (ngSubmit)='onSubmit()' class="ui large form">
-        <div class="ui stacked segment">        
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="text" name="username" placeholder="Username" formControlName='username'>
-            </div>
-          </div>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Password" formControlName='password'>
-            </div>
-          </div>
-          <button class="ui fluid large teal submit button" type="submit" >Login</button>
-          <div class="ui red label" *ngIf="errorMsg">{{errorMsg}}</div>
-        </div> 
-      </form>  
-      <div class="ui message">
-        New to us? <a href="#" routerLink="/register">Sign Up</a>
+  <div class="column">
+    <h2 class="ui teal image header">
+      <div class="content">
+        Log-in to your account
       </div>
+    </h2>
+    <form [formGroup]='loginForm' (ngSubmit)='onSubmit()' class="ui large form">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" placeholder="Username" formControlName='username'>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password" formControlName='password'>
+          </div>
+        </div>
+        <button class="ui fluid large teal submit button" type="submit">Login</button>
+        <div class="ui red label" *ngIf="errorMsg">{{errorMsg}}</div>
+      </div>
+    </form>
+    <div class="ui message">
+      New to us?
+      <a href="#" routerLink="/register">Sign Up</a>
     </div>
   </div>
-  
+</div>

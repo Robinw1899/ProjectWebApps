@@ -27,14 +27,13 @@ import { AuthenticationService} from './services/Tweetlist-service/authenticatio
 import { AddTweetComponent } from './components/add-tweet/add-tweet.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+
 //routes aanmaken
 const appRoutes: Routes = [
   {path:'',canActivate:[AuthGuardService],component:TweetListComponent},
   {path:'profile',canActivate:[AuthGuardService],component:UserComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'comment/:id',component:TweetListComponent},
-  {path:'Tweet',component:TweetListComponent},
   {path:'profile/:username',canActivate:[AuthGuardService],component:UserComponent},
   {path:'viewprofile',component:ProfileComponent}
 ]

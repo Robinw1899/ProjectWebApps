@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
   name: String;
   age: number;
   email: String;
-  description: string;
+  description: String;
   isEdit: boolean = false;
   userEditForm: FormGroup;
 
@@ -37,13 +37,11 @@ export class UserComponent implements OnInit {
       error => null,
       () => {
         this.userEditForm = this.fb.group({
-          firstName: [this.user.firstName, [ Validators.minLength(4)]],
-          lastName: [this.user.lastName, [ Validators.minLength(4)]],
-          email: [this.user.email],
-          birthDate: [this.user.birthdate],
+          firstName: [this.user.firstName, [Validators.required, Validators.minLength(4)]],
+          lastName: [this.user.lastName, [Validators.required, Validators.minLength(4)]],
+          email: [this.user.email,[Validators.required,Validators.email]],
           description:[this.user.description]
         });
-        console.log(this.user);
       }
     );
 
@@ -69,11 +67,12 @@ export class UserComponent implements OnInit {
       this.userEditForm.value.lastName,
       this.userEditForm.value.username,
       this.userEditForm.value.email,
-      this.userEditForm.value.birthDate,
+      new Date(),
+      '',
       this.userEditForm.value.description);
     this._service.updateUser(user, this.auth.user$.getValue()).subscribe(val => {
       if (val) {
-        this.onEdit();
+        this.isEdit = !this.isEdit;
       }
     });
   }
